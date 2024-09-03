@@ -33,7 +33,7 @@ const Form = () => {
 		register,
 		handleSubmit,
 		watch,
-
+		clearErrors,
 		formState: { errors },
 	} = useForm({
 		defaultValues: {},
@@ -42,10 +42,12 @@ const Form = () => {
 
 	const submitButtonRef = useRef(null);
 	const password = watch("password");
+	const repassword = watch("repassword");
 
 	const handleRepasswordChange = ({ target }) => {
 		const repasswordValue = target.value;
 		if (repasswordValue.length === password.length) {
+			clearErrors("repassword");
 			submitButtonRef.current?.focus();
 		}
 	};
